@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-body>
+	<cat href="http://www.l99.com/media/fun" data-mark="http://www.l99.com/media_load.action?typeIds=15" name="fun"/>
+	<cat href="http://www.l99.com/media/news" data-mark="http://www.l99.com/media_load.action?typeIds=27" name="news"/>
+	<cat href="http://www.l99.com/media/fashion" data-mark="http://www.l99.com/media_load.action?typeIds=28" name="fashion"/>
+	<cat href="http://www.l99.com/media/photograph" data-mark="http://www.l99.com/media_load.action?typeIds=18" name="photograph"/>
+	<cat href="http://www.l99.com/media/gossip" data-mark="http://www.l99.com/media_load.action?typeIds=25" name="gossip"/>
+	<cat href="http://www.l99.com/media/design" data-mark="http://www.l99.com/media_load.action?typeIds=7" name="design" />
+	<cat href="http://www.l99.com/media/sex" data-mark="http://www.l99.com/media_load.action?typeIds=14" name="sex" />
+	<cat href="http://www.l99.com/media/art" data-mark="http://www.l99.com/media_load.action?typeIds=5"  name="art"/>
+	<cat href="http://www.l99.com/media/finance" data-mark="http://www.l99.com/media_load.action?typeIds=16" name="finance"/>
+	<cat href="http://www.l99.com/media/wine" data-mark="http://www.l99.com/media_load.action?typeIds=20" name="wine" />
+	<cat href="http://www.l99.com/media/architecture" data-mark="http://www.l99.com/media_load.action?typeIds=22" name="architecture" />
+	<cat href="http://www.l99.com/media/tech" data-mark="http://www.l99.com/media_load.action?typeIds=8" name="tech"/>
+	<cat href="http://www.l99.com/media/competition" data-mark="http://www.l99.com/media_load.action?typeIds=19" name="competition"/>
+	<cat href="http://www.l99.com/media/jobs" data-mark="http://www.l99.com/media_load.action?typeIds=29" name="jobs"/>
+	<cat href="http://www.l99.com/media/app" data-mark="http://www.l99.com/media_load.action?typeIds=24" name="app"/>
+	<cat href="http://www.l99.com/media/cartoon" data-mark="http://www.l99.com/media_load.action?typeIds=23" name="cartoon"/>
+	<cat href="http://www.l99.com/media/movie" data-mark="http://www.l99.com/media_load.action?typeIds=10" name="movie"/>
+	<cat href="http://www.l99.com/media/autos" data-mark="http://www.l99.com/media_load.action?typeIds=6" name="autos" />
+	<cat href="http://www.l99.com/media/military" data-mark="http://www.l99.com/media_load.action?typeIds=13" name="military"/>
+	<cat href="http://www.l99.com/media/reading" data-mark="http://www.l99.com/media_load.action?typeIds=12" name="reading"/>
+	<cat href="http://www.l99.com/media/bedigest" data-mark="http://www.l99.com/media_load.action?typeIds=21" name="bedigest"/>
+	<cat href="http://www.l99.com/media/music" data-mark="http://www.l99.com/media_load.action?typeIds=11" name="music"/>
+	<cat href="http://www.l99.com/media/golf" data-mark="http://www.l99.com/media_load.action?typeIds=9" name="golf"/>
+	<cat href="http://www.l99.com/media/star" data-mark="http://www.l99.com/media_load.action?typeIds=26" name="star"/>
+	<cat href="http://www.l99.com/media/travel" data-mark="http://www.l99.com/media_load.action?typeIds=17" name="travel"/>
+	<cat href="http://www.l99.com/editors"  name="editors"/>
+</xml-body>

@@ -1,0 +1,10 @@
+
+所谓的变位词是指，组成各个单词的字母完全相同，只是字母排列的顺序不同。
+
+比如，pots、stop、tops就是变位词。
+
+写一个类实现 interface com.lifeix.d20130904.AnagramAnalyzer 的 analyze()方法, 
+输入是一个单词的list, 返回结果是变位词的list,返回结果中每一组变位词作为一个字符串, "|"分隔
+
+例如: 输入是 [pots, abc, stop, def, cba, must, de]
+输出是[pots|stop, abc|cba]

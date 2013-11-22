@@ -1,0 +1,4 @@
+ 1.将192.168.1.17 /nfsdata/filedata 映射到本地z:/
+ 2.统计出此目录下lifeix-growth-road.txt　行数
+ 3.循环执行9次并输出时间
+     
