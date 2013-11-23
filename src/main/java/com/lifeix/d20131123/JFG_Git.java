@@ -19,8 +19,8 @@ public class JFG_Git {
 		}
 		String[] lines = sb.toString().split("\n");
 		int count = 0;
-		Map<Integer, String> reduceMap = new HashMap<Integer, String>(lines.length);
-		Map<Integer, String> addMap = new HashMap<Integer, String>(lines.length);
+		Map<String, String> reduceMap = new HashMap<String, String>(lines.length);
+		Map<String, String> addMap = new HashMap<String, String>(lines.length);
 		String name1 = "";
 		String name2 = "";
 		for(String line : lines) {
@@ -28,13 +28,13 @@ public class JFG_Git {
 				if(line.startsWith("---")) {
 					name1 = line.substring(line.indexOf("---") + 4);
 				} else {
-					reduceMap.put(++count, name1 + "  " + line);
+					reduceMap.put(name1, line);
 				}
 			} else if(line.startsWith("+")) {
 				if(line.startsWith("+++")) {
 					name2 = line.substring(line.indexOf("+++") + 4);
 				} else {
-					addMap.put(++count, name2 + "  " + line);
+					addMap.put(name2, line);
 				}
 			}
 		}
@@ -43,9 +43,9 @@ public class JFG_Git {
 		printMsg(addMap, "增加");
 	}
 	
-	private void printMsg(Map<Integer, String> data,String flag) {
-		for(Entry<Integer, String> entry : data.entrySet()) {
-			System.out.println("在第" + entry.getKey() + "行 " + flag + " " + entry.getValue());
+	private void printMsg(Map<String, String> data,String flag) {
+		for(Entry<String, String> entry : data.entrySet()) {
+			System.out.println("文件" + entry.getKey() + " " + flag + " " + entry.getValue());
 		}
 	}
 	
