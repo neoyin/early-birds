@@ -3,6 +3,13 @@ package com.lifeix.d20131120;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+				Thread.sleep(1000);
+class End extends Thread {
+	public void run() {
+		Test jsh = new Test();
+		jsh.signalCallback();
+	}
+}
 public class Test extends Thread {
 
 	/**
@@ -18,9 +25,8 @@ public class Test extends Thread {
 		Runtime.getRuntime().addShutdownHook(new End());
 		while(true) {
 			try {
-				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				// TODO Auto-generated catch block mmmm
 				e.printStackTrace();
 			}
 			signalCallback();
@@ -33,10 +39,10 @@ public class Test extends Thread {
 		System.out.println(date);
     } 
 }
+		//System.out.println("kill readying...");
 class End extends Thread {
 	public void run() {
 		Test jsh = new Test();
-		System.out.println("kill readying...");
 		jsh.signalCallback();
 	}
 }
