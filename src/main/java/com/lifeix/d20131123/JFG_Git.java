@@ -22,7 +22,6 @@ public class JFG_Git {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
 		new JFG_Git().print();
 	}
 
