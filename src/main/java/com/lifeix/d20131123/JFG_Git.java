@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 public class JFG_Git {
 
 	public void print() throws IOException {
-		String cmd = "git diff HEAD";
+		String cmd = "git diff";
 		Process p = Runtime.getRuntime().exec(cmd);
 		InputStream is = p.getInputStream();
 		byte[] buffer = new byte[1024];
@@ -21,14 +21,25 @@ public class JFG_Git {
 		int count = 0;
 		Map<Integer, String> reduceMap = new HashMap<Integer, String>(lines.length);
 		Map<Integer, String> addMap = new HashMap<Integer, String>(lines.length);
+		String name1 = "";
+		String name2 = "";
 		for(String line : lines) {
 			if(line.startsWith("-")) {
-				reduceMap.put(++count, line);
+				if(line.startsWith("---")) {
+					name1 = line.substring(line.indexOf("---") + 4);
+				} else {
+					reduceMap.put(++count, name1 + "  " + line);
+				}
 			} else if(line.startsWith("+")) {
-				addMap.put(++count, line);
+				if(line.startsWith("+++")) {
+					name2 = line.substring(line.indexOf("+++") + 4);
+				} else {
+					addMap.put(++count, name2 + "  " + line);
+				}
 			}
 		}
-		printMsg(reduceMap, "减少");
+		printMsg(reduceMap, "删除了");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		printMsg(addMap, "增加");
 	}
 	
