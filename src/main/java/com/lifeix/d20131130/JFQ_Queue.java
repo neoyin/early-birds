@@ -1,5 +1,6 @@
 package com.lifeix.d20131130;
 
+import java.util.Iterator;
 import java.util.Stack;
 
 public class JFQ_Queue implements TrainTest {
@@ -13,6 +14,9 @@ public class JFQ_Queue implements TrainTest {
 		String[] ts = trains.split(" ");
 		int n = Integer.parseInt(mns[0]);
 		int m = Integer.parseInt(mns[1]);
+		if(m == 1) {
+			return false;
+		}
 		if(m > 100000 || n > 100000 || m > n) {
 			throw new IllegalArgumentException();
 		} 
@@ -65,6 +69,10 @@ public class JFQ_Queue implements TrainTest {
 				break;
 			}
 		}
+		Iterator<Integer> it = stack.iterator();
+		while(it.hasNext()) {
+			b.push(it.next());
+		}
 		return !flag;
 	}
 
@@ -72,7 +80,9 @@ public class JFQ_Queue implements TrainTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(new JFQ_Queue().check("5 2", "1 3 2 4 5"));
+		
+		System.out.println(new JFQ_Queue().check("5 1", "1 2 4 5 3"));
+		
 	}
 
 }
