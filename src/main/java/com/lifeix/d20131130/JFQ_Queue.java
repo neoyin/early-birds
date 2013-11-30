@@ -7,7 +7,6 @@ public class JFQ_Queue implements TrainTest {
 
 	@Override
 	public boolean check(String mn, String trains) {
-		long start = System.currentTimeMillis();
 		if(null == mn || "".equals(mn) || null == trains || "".equals(trains)) {
 			throw new NullPointerException();
 		}
@@ -15,6 +14,9 @@ public class JFQ_Queue implements TrainTest {
 		String[] ts = trains.split(" ");
 		int n = Integer.parseInt(mns[0]);
 		int m = Integer.parseInt(mns[1]);
+		if(m == 1) {
+			return false;
+		}
 		if(m > 100000 || n > 100000 || m > n) {
 			throw new IllegalArgumentException();
 		} 
@@ -71,8 +73,6 @@ public class JFQ_Queue implements TrainTest {
 		while(it.hasNext()) {
 			b.push(it.next());
 		}
-		long end = System.currentTimeMillis();
-		System.out.println("time is " + (end - start) + " bstack = " + b.toString());
 		return !flag;
 	}
 
@@ -81,7 +81,7 @@ public class JFQ_Queue implements TrainTest {
 	 */
 	public static void main(String[] args) {
 		
-		System.out.println(new JFQ_Queue().check("5 2", "1 3 2 4 5"));
+		System.out.println(new JFQ_Queue().check("5 1", "1 2 4 5 3"));
 		
 	}
 
