@@ -1,11 +1,13 @@
 package com.lifeix.d20131130;
 
+import java.util.Iterator;
 import java.util.Stack;
 
 public class JFQ_Queue implements TrainTest {
 
 	@Override
 	public boolean check(String mn, String trains) {
+		long start = System.currentTimeMillis();
 		if(null == mn || "".equals(mn) || null == trains || "".equals(trains)) {
 			throw new NullPointerException();
 		}
@@ -65,6 +67,12 @@ public class JFQ_Queue implements TrainTest {
 				break;
 			}
 		}
+		Iterator<Integer> it = stack.iterator();
+		while(it.hasNext()) {
+			b.push(it.next());
+		}
+		long end = System.currentTimeMillis();
+		System.out.println("time is " + (end - start) + " bstack = " + b.toString());
 		return !flag;
 	}
 
@@ -72,7 +80,9 @@ public class JFQ_Queue implements TrainTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
 		System.out.println(new JFQ_Queue().check("5 2", "1 3 2 4 5"));
+		
 	}
 
 }
