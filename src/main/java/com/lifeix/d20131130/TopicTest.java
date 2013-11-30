@@ -33,6 +33,12 @@ public class TopicTest {
         list.add("1 2 3 4 5");
         list.add("5 5");
         list.add("3 1 2 4 5");
+        list.add("5 1");
+        list.add("1 2 4 5 3");
+        list.add("10 3");
+        list.add("1 2 4 5 3 6 7 8 9 10");
+        list.add("10 3");
+        list.add("1 2 4 5 3 8 6 7 9 10");
 
         System.out.println("classname===================:" + invoker.getClass().getName());
         for (int i=0;i<list.size();i+=2) {
@@ -43,8 +49,7 @@ public class TopicTest {
             boolean result = invoker.check(nm, trains);
 
             long t2 = System.currentTimeMillis();
-            System.out.println("nm = " + nm + " trains=" + trains);
-            System.out.println("result = " + result + " time:" + (t2 - t1));
+            System.out.println("result = " + result + " time:" + (t2 - t1) + "  nm = " + nm + " trains=" + trains);
         }
     }
 
