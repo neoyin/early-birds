@@ -1,21 +1,23 @@
 package com.lifeix.d20131211;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class JFQ_F {
 
 	public static int cycle(int n) {
-		if(n <= 2){  
-            return 1;  
+		if(n <= 1){  
+            return 0;  
+        }else if(n < 2) {
+        	return 1;
         }else{  
             return cycle(n-1) + cycle(n-2);  
         }  
 	}
 	
 	public static int noCycle(int n) {
-		if(n <= 2){  
-            return 1;  
+		if(n <= 1){  
+            return 0;  
+        }else if(n < 2) {
+        	return 1; 
         }  
         int n1 = 1;
         int n2 = 1;
@@ -29,7 +31,7 @@ public class JFQ_F {
 	}
 	
 	public static void main(String[] args) {
-		int n = 10;
+		int n = 40;
         System.out.println(cycle(n)); 
 		System.out.println(noCycle(n));
 	}
