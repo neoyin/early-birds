@@ -6,7 +6,7 @@ public class JFQ_F {
 	public static int cycle(int n) {
 		if(n <= 1){  
             return 0;  
-        }else if(n < 2) {
+        }else if(n == 2) {
         	return 1;
         }else{  
             return cycle(n-1) + cycle(n-2);  
@@ -16,7 +16,7 @@ public class JFQ_F {
 	public static int noCycle(int n) {
 		if(n <= 1){  
             return 0;  
-        }else if(n < 2) {
+        }else if(n == 2) {
         	return 1; 
         }  
         int n1 = 1;
