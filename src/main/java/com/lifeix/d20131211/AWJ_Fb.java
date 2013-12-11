@@ -10,11 +10,13 @@ public class AWJ_Fb {
 	}
 
 	public int rb(int n){
-		if(n<=2){
+		if(n == 1){
+			return 0;
+		}else if(n<=3){
 			return 1;
-		}else if(n>2){
+		}else if(n>3){
 			return rb(n-1)+rb(n-2);
-		}else if(n<0){
+		}else if(n<=0){
 			System.out.println("输入有误");
 			return -1;
 		}
@@ -22,12 +24,14 @@ public class AWJ_Fb {
 	}
 
 	public Long unfb(int n) {
-		if (n <= 2)
+		if (n == 1)
+			return 0L;
+		else if(n<=3){
 			return 1L;
-
+		}
 		long l1 = 1;
 		long l2 = 1;
-		int index = 2;
+		int index = 3;
 		while (index < n - 1) {
 			long l = l2;
 			l2 = l1 + l2;
