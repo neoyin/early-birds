@@ -42,12 +42,14 @@ public class JFQ_M {
 		}
 		br.close();
 		boolean flag = false;
+		int isNone = 0;
 		for(String line : list) {
 			String[] datas = line.split(" ");
 			if(map.containsKey(datas[0])) {
 				int value = map.get(datas[0]);
 				if(value >= n - 2) {
 					flag = true;
+					isNone += 1;
 					break;
 				} else {
 					map.put(datas[0], ++value);
@@ -59,6 +61,7 @@ public class JFQ_M {
 				int value = map.get(datas[1]);
 				if(value >= n - 2) {
 					flag = true;
+					isNone += 1;
 					break;
 				} else {
 					map.put(datas[1], ++value);
@@ -67,7 +70,7 @@ public class JFQ_M {
 				map.put(datas[1], 1);
 			}
 		}
-		if(flag) {
+		if(flag || (isNone <= 1 && map.size()%2 != 0)) {
 			System.out.println("-1");
 		} else {
 			System.out.println("1");
