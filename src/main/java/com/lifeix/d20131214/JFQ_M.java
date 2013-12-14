@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class JFQ_M {
 
@@ -25,7 +26,6 @@ public class JFQ_M {
 		//br.close();
 		int n = Integer.parseInt(nm.split(" ")[0]);
 		int m = Integer.parseInt(nm.split(" ")[1]);
-		Map<String, Integer> map = new HashMap<String, Integer>(n);
 		List<String> list = new ArrayList<String>();
 		for(int i = 0; i < m; i++) {
 			System.out.println("请输入两个镇子:");
@@ -42,35 +42,43 @@ public class JFQ_M {
 		}
 		br.close();
 		boolean flag = false;
-		int isNone = 0;
+		Map<String, List<String>> map = new HashMap<String, List<String>>(n);
 		for(String line : list) {
 			String[] datas = line.split(" ");
 			if(map.containsKey(datas[0])) {
-				int value = map.get(datas[0]);
-				if(value >= n - 2) {
-					flag = true;
-					isNone += 1;
-					break;
-				} else {
-					map.put(datas[0], ++value);
+				List<String> value = map.get(datas[0]);
+				if(!value.contains(datas[1])) {
+					value.add(datas[1]);
 				}
+				map.put(datas[0], value);
 			} else {
-				map.put(datas[0], 1);
+				List<String> value = new ArrayList<String>();
+				value.add(datas[1]);
+				map.put(datas[0], value);
 			}
 			if(map.containsKey(datas[1])) {
-				int value = map.get(datas[1]);
-				if(value >= n - 2) {
-					flag = true;
-					isNone += 1;
-					break;
-				} else {
-					map.put(datas[1], ++value);
+				List<String> value = map.get(datas[1]);
+				if(!value.contains(datas[0])) {
+					value.add(datas[0]);
 				}
+				map.put(datas[1], value);
 			} else {
-				map.put(datas[1], 1);
+				List<String> value = new ArrayList<String>();
+				value.add(datas[0]);
+				map.put(datas[1], value);
 			}
 		}
-		if(flag || (isNone <= 1 && map.size()%2 != 0)) {
+		for(Entry<String, List<String>> entry : map.entrySet()) {
+			List<String> data = entry.getValue();
+			for(String line : list) {
+				String[] st = line.split(" ");
+				if(data.contains(st[0]) && data.contains(st[1])) {
+					flag = true;
+					break;
+				}
+			}
+		}
+		if(flag) {
 			System.out.println("-1");
 		} else {
 			System.out.println("1");
