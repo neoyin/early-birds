@@ -7,7 +7,7 @@ public class ProcessTime {
 	public static void main(String[] args) {
 		Class<UseTime> c = UseTime.class;
 		try {
-			Method [] methods =c.getMethods();
+			Method [] methods =c.getDeclaredMethods();
 			for(int i=0; i<methods.length; i++){
 				Method method = methods[i];
 				if(method.isAnnotationPresent(MyTime.class)){
