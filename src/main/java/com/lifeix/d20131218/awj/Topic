@@ -1,9 +1,0 @@
-java annotation 练习
-题目:
-写三个类, 完成annotation的使用
-
-每人建一个自己名字的包, 在包内建新类
-
-1. annotation 的定义类 MyTime, 定义一个time的annotation
-2. annotation 的使用类 UseTime, 在这个类中定义两个方法, 一个用@time标注, 一个不标注
-3. annotation 的解析类 ProcessTime, 在这个类中new一个UserTime的对象, 打印出对象的所有方法名, 并标示出哪个方法是用time标注过的.
