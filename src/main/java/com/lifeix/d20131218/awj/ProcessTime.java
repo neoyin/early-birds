@@ -11,9 +11,9 @@ public class ProcessTime {
 			for(int i=0; i<methods.length; i++){
 				Method method = methods[i];
 				if(method.isAnnotationPresent(MyTime.class)){
-					System.out.println(method.getName()+"使用了注解@MyTime");
+					System.out.println(method.getName()+"()方法使用了注解@MyTime");
 				}else{
-					System.out.println(method.getName()+"没有使用注解@MyTime");
+					System.out.println(method.getName()+"()方法没有使用注解@MyTime");
 				}
 			}
 			
