@@ -39,18 +39,19 @@ public class LJApp {
 				j--;
 			}
 			int k = j+1;
+			boolean big = false;
 			while(k<output.length && output[k]>=input[k]){
 				if(output[k] > input[k]){
-					k = output.length;
+					big = true;
 					break;
 				}
 				k++;
 			}
-			if(k < output.length){
+			if(!big){
 				i--;
 				j++;
 				boolean out = false;
-				if(!JI){
+				if(i!=j){
 					output[j]++;
 					output[i]++;
 					now += 2;
@@ -210,7 +211,7 @@ public class LJApp {
 //			builder.append(random.nextInt(9));
 //		}
 //		System.out.println(palindrom(builder.toString()));
-		System.out.println(palindrom("111111111111111111111111111111111111111111111111111111111112"));
+		System.out.println(palindrom("1441"));
 	}
 	
 }
