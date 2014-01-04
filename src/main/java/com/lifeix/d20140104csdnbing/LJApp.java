@@ -90,6 +90,7 @@ public class LJApp {
 			for(int i=1;i<output.length-1;i++){
 				output[i] = 0;
 			}
+			now = 2;
 		}
 		output = find(output, now, total, JI);
 		if(output != null && output.length > 0){
@@ -144,12 +145,23 @@ public class LJApp {
 		}
 		if(total == now)return on;
 		if(ji){
-			on[k] ++;
-			now ++;
+			if((total-now) / 9 > 1){
+				on[k] += 9;
+				now += 9;
+			}else{
+				on[k] ++;
+				now ++;
+			}
 		}else{
-			on[k] ++;
-			on[j] ++;
-			now += 2;
+			if((total-now) / 9 >2){
+				on[k] += 9;
+				on[j] += 9;
+				now += 18;
+			}else{
+				on[k] ++;
+				on[j] ++;
+				now += 2;
+			}
 		}
 		out = false;
 		while(on[k] > 9){
@@ -165,8 +177,15 @@ public class LJApp {
 			on[k]=on[j] = 0;
 			k--;
 			j++;
-			on[j]++;
-			on[k]++;
+			if((total-now) / 9 >2){
+				on[j] += 9;
+				on[k] += 9;
+				now += 18;
+			}else{
+				on[j]++;
+				on[k]++;
+				now += 2;
+			}
 		}
 		if(out){
 			if(JI){
@@ -191,7 +210,7 @@ public class LJApp {
 //			builder.append(random.nextInt(9));
 //		}
 //		System.out.println(palindrom(builder.toString()));
-		System.out.println(palindrom("111111111111111111111111111111111111111111112"));
+		System.out.println(palindrom("111111111111111111111111111111111111111111111111111111111112"));
 	}
 	
 }
