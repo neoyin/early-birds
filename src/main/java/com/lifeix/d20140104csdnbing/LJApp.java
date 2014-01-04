@@ -2,6 +2,7 @@ package com.lifeix.d20140104csdnbing;
 
 import java.util.Random;
 
+
 public class LJApp {
 
 	public static String palindrom(String a){
@@ -115,35 +116,6 @@ public class LJApp {
 			ji = true;
 			j = k;
 		}
-		while(now > total){
-			if(ji){
-				now -= on[k];
-				on[k] = 0;
-			}else{
-				now -= (2*on[k]);
-				on[k] = 0;
-				on[j] = 0;
-			}
-			j++;
-			k--;
-			if(k < 0){
-				if(JI){
-					on = new int[on.length+2];
-				}else{
-					on = new int[on.length+1];
-				}
-				on[0] = 1;
-				on[on.length-1] = 1;
-				for(int l=1;l<on.length-1;l++){
-					on[l] = 0;
-				}
-				now = 2;
-				break;
-			}
-			on[k] ++;
-			on[j] ++;
-			now += 2;
-		}
 		if(total == now)return on;
 		if(ji){
 			if((total-now) / 9 > 1){
@@ -166,7 +138,7 @@ public class LJApp {
 		}
 		out = false;
 		while(on[k] > 9){
-			if(k<0){
+			if(k<=0){
 				out = true;
 				break;
 			}
@@ -211,7 +183,7 @@ public class LJApp {
 //			builder.append(random.nextInt(9));
 //		}
 //		System.out.println(palindrom(builder.toString()));
-		System.out.println(palindrom("1441"));
+		System.out.println(palindrom("1151111111111111111111111111111111111111111111111112"));
 	}
 	
 }
