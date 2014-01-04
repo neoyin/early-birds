@@ -1,9 +1,12 @@
 package com.lifeix.d20140104csdnbing;
 
+import javax.swing.JOptionPane;
+
 public class AWJ_PN {
 	
 	public static void main(String[] args) {
-		System.out.println(palindrom("919"));
+		String inputString = JOptionPane.showInputDialog("请输入一个整数");
+		System.out.println(palindrom(inputString));
 	}
 	
 	public static String palindrom(String a) { 
@@ -11,7 +14,7 @@ public class AWJ_PN {
 		try{ 
 			long num = Long.parseLong(a); 
 			int a_sum = sum(num);
-			//a的各位数字和 
+			//a的各位数字和
 			for(long i=num+1;i<Long.MAX_VALUE;i++){ 
 				//判断是否为回文数 
 				if(i==reverse(i)){ 
@@ -32,7 +35,9 @@ public class AWJ_PN {
 	public static int sum(long m){ 
 		long s = 0,b = 0; 
 		while(m != 0){
-			b = m % 10; m = m / 10; s = s + b; 
+			b = m % 10;
+			m = m / 10; 
+			s = s + b; 
 		} 
 		return (int)s;
 	} 
