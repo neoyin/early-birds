@@ -1,5 +1,7 @@
 package com.lifeix.d20140104csdnbing;
 
+import java.util.Random;
+
 public class LJApp {
 
 	public static String palindrom(String a){
@@ -21,6 +23,7 @@ public class LJApp {
 			output[1] = 0;
 			output[2] = 1;
 			now = 2;
+			if(now > total)return new String("Impossible");
 		}else if(!JI || (input.length%10)%2>0){
 			output = new int[input.length];
 			int i=0;
@@ -88,7 +91,6 @@ public class LJApp {
 				output[i] = 0;
 			}
 		}
-		if(now > total)return new String("Impossible");
 		output = find(output, now, total, JI);
 		if(output != null && output.length > 0){
 			StringBuilder builder = new StringBuilder();
@@ -102,12 +104,46 @@ public class LJApp {
 	}
 	
 	public static int[] find(int[] in, int now, int total, boolean JI){
-		if(total == now)return in;
 		int[] on = in;
 		int k = ((on.length+1)/2)-1;
 		int j = k+1;
+		boolean ji = false;
+		boolean out = false;
 		if(on.length%10%2 > 0){
+			ji = true;
 			j = k;
+		}
+		while(now > total){
+			if(ji){
+				now -= on[k];
+				on[k] = 0;
+			}else{
+				now -= (2*on[k]);
+				on[k] = 0;
+				on[j] = 0;
+			}
+			j++;
+			k--;
+			if(k < 0){
+				if(JI){
+					on = new int[on.length+2];
+				}else{
+					on = new int[on.length+1];
+				}
+				on[0] = 1;
+				on[on.length-1] = 1;
+				for(int l=1;l<on.length-1;l++){
+					on[l] = 0;
+				}
+				now = 2;
+				break;
+			}
+			on[k] ++;
+			on[j] ++;
+			now += 2;
+		}
+		if(total == now)return on;
+		if(ji){
 			on[k] ++;
 			now ++;
 		}else{
@@ -115,18 +151,18 @@ public class LJApp {
 			on[j] ++;
 			now += 2;
 		}
-		boolean out = false;
+		out = false;
 		while(on[k] > 9){
 			if(k<0){
 				out = true;
 				break;
 			}
-			on[k]=on[j] = 0;
 			if(k == j){
 				now -= on[k];
 			}else{
 				now -= (2*on[k]);
 			}
+			on[k]=on[j] = 0;
 			k--;
 			j++;
 			on[j]++;
@@ -149,7 +185,13 @@ public class LJApp {
 		return find(on, now, total, JI);
 	}
 	public static void main(String[] args){
-		System.out.println(palindrom("11"));
+//		Random random = new Random();
+//		StringBuilder builder = new StringBuilder();
+//		for(int i=0;i<801;i++){
+//			builder.append(random.nextInt(9));
+//		}
+//		System.out.println(palindrom(builder.toString()));
+		System.out.println(palindrom("111111111111111111111111111111111111111111112"));
 	}
 	
 }
