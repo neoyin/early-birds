@@ -12,12 +12,14 @@ import javax.imageio.ImageIO;
 public class LJApp {
 	public static void test(String path, boolean change) throws IOException{
 		File f = new File(path);
+		String fileName=f.getName();
+		String prefix=fileName.substring(fileName.lastIndexOf(".")+1);
 		Image image = ImageIO.read(f);
 		BufferedImage bufImg = new BufferedImage(image.getWidth(null), image.getHeight(null),BufferedImage.TYPE_INT_RGB);   
         Graphics g = bufImg .createGraphics();   
         g.drawImage(image, 0, 0, null);   
         g.dispose(); 
-        javax.imageio.ImageIO.write(rotate90DX(bufImg, change) , "jpeg", new FileOutputStream(path));
+        javax.imageio.ImageIO.write(rotate90DX(bufImg, change) , prefix, new FileOutputStream(path));
 	}
 	
 	public static BufferedImage rotate90DX(BufferedImage bi, boolean change)
@@ -40,7 +42,7 @@ public class LJApp {
     	//true为顺时针，false为逆时针
     	boolean change = true;
     	//图片地址
-    	String path = "/home/abc/download/092327x6ytdyhz34mz4546.jpg.thumb.jpg";
+    	String path = "/home/abc/下载/1.png";
         try {
 			test(path, change);
 		} catch (IOException e) {

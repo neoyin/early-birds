@@ -11,8 +11,10 @@ import javax.imageio.ImageIO;
 public class JFQ_RotageImage {
 
 	public static void main(String[] args) throws IOException {
-		String path = "/home/lifeix/2014-02-12.png";
+		String path = "/home/abc/下载/3.png";
 		File file = new File(path);
+		String fileName=file.getName();
+		String prefix=fileName.substring(fileName.lastIndexOf(".")+1);
 		if(!file.exists()) {
 			throw new RuntimeException("no path " + path);
 		}
@@ -37,7 +39,7 @@ public class JFQ_RotageImage {
         op.filter(image, rotatedImage);  
         image = rotatedImage;  
           
-        ImageIO.write(image, "png", new File(file.getCanonicalPath()+"_new_"+file.getName()));  
+        ImageIO.write(image, prefix, new File(file.getCanonicalPath()+"_new_"+file.getName()));  
 	}
 
 }
