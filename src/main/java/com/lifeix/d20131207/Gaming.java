@@ -1,3 +1,5 @@
+package com.lifeix.d20131207;
+
 import java.io.BufferedInputStream;
 import java.util.Scanner;
 

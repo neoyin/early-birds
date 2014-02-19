@@ -1,3 +1,5 @@
+package com.lifeix.d20131211;
+
 public class JSH_Stat {
 
 	/**

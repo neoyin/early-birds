@@ -1,4 +1,4 @@
-package com.lifeix.jsh;
+package com.lifeix.d20131123.jsh;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import com.lifeix.jsh.diff_match_patch.Diff;
+import com.lifeix.d20131123.jsh.diff_match_patch.Diff;
 
 /**
  * call google's diff_match_patch to achieve diff small file content

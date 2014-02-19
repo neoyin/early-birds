@@ -1,3 +1,5 @@
+package com.lifeix.d20131214;
+
 import java.io.BufferedInputStream;
 import java.util.HashMap;
 import java.util.Map;
