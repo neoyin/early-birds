@@ -1,0 +1,6 @@
+java Instrumentation
+
+执行com.lifeix.d2014.m0219instrumentation.Serv类的main方法, 用instrumentation实现打印Serv类中每个方法的执行时间 .
+方法名 : 毫秒数
+
+把执行用的命令写在注释里.
