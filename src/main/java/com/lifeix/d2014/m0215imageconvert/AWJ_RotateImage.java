@@ -1,4 +1,4 @@
-package com.lifeix.d2014.0215imageconvert;
+package com.lifeix.d2014.m0215imageconvert;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;

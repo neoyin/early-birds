@@ -1,4 +1,4 @@
-package com.lifeix.d2014.0104csdnbing;
+package com.lifeix.d2014.m0104csdnbing;
 
 import java.util.Random;
 

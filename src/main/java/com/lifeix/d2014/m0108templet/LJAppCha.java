@@ -1,4 +1,4 @@
-package com.lifeix.d20140108templet;
+package com.lifeix.d2014.m0108templet;
 
 public class LJAppCha extends LJApp{
 

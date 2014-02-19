@@ -1,19 +1,21 @@
+package com.lifeix.d2014.m0108templet;
+
 public class JSH_TemplateMethod {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		AbstractTemplate coffee = new Coffee();
+		AbstractTemplate2 coffee = new Coffee2();
 		coffee.templateMethod();
 		System.out.println();
-		AbstractTemplate tea = new Tea();
+		AbstractTemplate2 tea = new Tea();
 		tea.templateMethod();
 	}
 
 }
 
-abstract class AbstractTemplate {
+abstract class AbstractTemplate2 {
 	
 	public void templateMethod() {
 		waterBoil();
@@ -37,14 +39,14 @@ abstract class AbstractTemplate {
 		System.out.println("Pour a cup");
 	}
 }
-class Coffee extends AbstractTemplate {
+class Coffee2 extends AbstractTemplate2 {
 
 	@Override
 	protected void config() {
 		System.out.println("Mixed coffee and water");
 	}
 }
-class Tea extends AbstractTemplate {
+class Tea extends AbstractTemplate2 {
 
 	@Override
 	protected void config() {
