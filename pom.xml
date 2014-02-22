@@ -29,6 +29,11 @@
 
 	<dependencies>
 		<dependency>
+  			<groupId>org.apache.bcel</groupId>
+  			<artifactId>bcel</artifactId>
+  			<version>5.2</version>
+		</dependency>
+		<dependency>
 			<groupId>com.lifeix</groupId>
 			<artifactId>lifeix-tool-utils</artifactId>
 			<version>0.0.2-SNAPSHOT</version>
