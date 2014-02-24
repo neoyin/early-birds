@@ -61,13 +61,18 @@
 			<artifactId>jersey-client</artifactId>
 			<version>1.17.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>sshtools</groupId>
 			<artifactId>j2ssh-core</artifactId>
 			<version>0.2.9</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.17.1-GA</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

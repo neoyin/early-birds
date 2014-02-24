@@ -16,5 +16,6 @@ public class Serv {
 		serv.init();
 		serv.work();
 		serv.clearup();
+		System.out.println("over!");
 	}
 }
