@@ -1,0 +1,7 @@
+Java SE 6 脚本编程
+
+md5.js定义了一个计算字符串md5的方法, 在java中利用java的script引擎调用这个方法,计算字符串 123 的md5值
+
+md5.html中有在html中使用md5函数的示例
+参考资料
+http://www.ibm.com/developerworks/cn/java/j-lo-jse66/index.html
