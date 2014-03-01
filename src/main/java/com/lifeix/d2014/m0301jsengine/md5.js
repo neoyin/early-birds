@@ -1,5 +1,5 @@
 
-md5 = window.md5 = (function () {
+md5 = (function () {
     'use strict';
 
     /*
