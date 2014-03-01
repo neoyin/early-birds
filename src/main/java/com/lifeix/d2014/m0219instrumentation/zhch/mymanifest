@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Class-Path: . 
+Premain-Class: com.lifeix.d2014.m0219instrumentation.zhch.Agent
