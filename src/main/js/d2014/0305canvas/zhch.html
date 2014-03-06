@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	</head>
+	<body>
+	    <canvas id="chess" width="1300" height="800"></canvas>
+
+<script type="text/javascript">
+    var grid = 30; 
+    var width = grid *18;
+	var topx = 50,left = 200;
+	var w = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S'];
+	var cxt = document.getElementById("chess").getContext('2d');
+
+	function drawLine(x1,y1,x2,y2){
+		cxt.moveTo(x1 + left, y1 + topx);
+		cxt.lineTo(x2 + left, y2 + topx);
+	}
+	function draw() {
+		cxt.font = "bold 13px Arial";
+
+		cxt.beginPath();
+		for(var i = 0; i < 19; i++) {
+			cxt.fillText(i+1,left+i*grid - 3,topx - 10);
+			cxt.fillText(w[i],left - 20,grid*i + topx + 5);
+
+			drawLine(0, i*grid, width, i*grid);
+			drawLine(i*grid, 0, i*grid, width);
+		}
+		cxt.closePath();
+		cxt.stroke();
+
+		for(var i=3;i<17;i+=6) {
+			for(j=3;j<17;j+=6){
+				cxt.arc(grid*i+left, j*grid+topx, 10, 0, Math.PI*2,true);
+				cxt.fill();
+				cxt.closePath();
+			}
+		}
+
+	}
+	draw();
+
+</script>
+</body>
+</html>
