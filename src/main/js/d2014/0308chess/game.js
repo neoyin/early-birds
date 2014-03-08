@@ -10,6 +10,9 @@ var Game = {
 	put:function(color, x, y){ // 下一个棋子
 
 	},
+	putChess:function(chess){ // 下一个棋子, 直接放棋子对象
+
+	},
 	clearDead:function(){ //  提子, 清除掉已死的棋子
 
 	},
