@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    
+<script type="text/javascript">
+	function draw(){
+		var mark_x = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S'];
+	 	var canvas = document.getElementById("canvas");
+		if(canvas.getContext){
+			var ctx = canvas.getContext("2d");
+
+			//矩形
+			//ctx.fillStyle = "rgb(200,0,0)";
+			//ctx.fillRect(40,40,100,100);
+			//ctx.clearRect(50,50,80,80);
+			//ctx.fillStyle = "rgba(0,0,200,0.5)";
+			//ctx.strokeRect(60,60,60,60);
+			
+			//线条
+			/*ctx.beginPath();
+			ctx.moveTo(75,50);
+			ctx.lineTo(100,0);
+			ctx.lineTo(100,100);
+			
+			ctx.moveTo(25,50);
+			ctx.lineTo(0,100);
+			ctx.lineTo(0,0);
+			
+			ctx.moveTo(50,25);
+			ctx.lineTo(0,0);
+			ctx.lineTo(100,0);
+
+			ctx.moveTo(50,75);
+			ctx.lineTo(100,100);
+			ctx.lineTo(0,100);
+			ctx.fill();*/
+
+			//画圆
+			/*ctx.fillStyle="#FF0000";
+			ctx.arc(75,75,50,0,Math.PI*2,false);
+			ctx.arc(75,75,40,0,Math.PI*1,false);
+			ctx.arc(60,60,10,0,Math.PI*2,false);
+			ctx.arc(90,60,10,0,Math.PI*2,false);
+			ctx.stroke();*/
+
+			//塞尔曲线
+			/*ctx.beginPath();
+			ctx.fillStyle = "rgb(200,0,0)";
+			ctx.moveTo(75,25);              
+			ctx.quadraticCurveTo(25,25,25,62.5);            
+			ctx.quadraticCurveTo(25,100,50,100);             
+			ctx.quadraticCurveTo(50,120,30,125);             
+			ctx.quadraticCurveTo(60,120,65,100);            
+			ctx.quadraticCurveTo(125,100,125,62.5);             
+			ctx.quadraticCurveTo(125,25,75,25);
+			ctx.stroke();*/
+			
+			var width = 720;
+			var height = 720;
+			var h = 50;
+			ctx.beginPath();
+			ctx.lineWidth=1;
+			for(var i=0;i<19;i++){
+			    ctx.fillText(mark_x[i],40,55+(i*40));
+			    ctx.moveTo(50,50+(i*40));
+			    ctx.lineTo(770,50+(i*40));
+			    
+			}
+
+			for(var i=0;i<19;i++){
+			    ctx.fillText(i+1,45+(i*40),40);
+			    ctx.moveTo(50+(i*40),50);
+			    ctx.lineTo(50+(i*40),770);
+			}
+			ctx.closePath();
+			ctx.stroke();
+			
+			ctx.beginPath();
+			for(var i=0;i<19;i++){
+			    if((i+1)==4 || (i+1)==10 || (i+1)==16){
+				ctx.fillStyle="#000000";
+				ctx.arc(50+(i*40),50+(40*3),4,0,Math.PI*2,false);
+				ctx.arc(50+(i*40),50+(40*9),4,0,Math.PI*2,false);
+				ctx.arc(50+(i*40),50+(40*15),4,0,Math.PI*2,false);
+			    }
+			}
+			ctx.fill();
+		}
+	}
+</script>    
+</head>
+<body onload="draw();">
+<div>
+   <canvas width="1200" id="canvas" height="800">
+ 	<p>你的浏览器不支持canvas</p>	
+   </canvas>
+</div>
+</body>
+</html>
