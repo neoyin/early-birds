@@ -4,6 +4,8 @@
     <title></title>
     
 <script type="text/javascript">
+
+	//画棋盘
 	function draw(){
 		var mark_x = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S'];
 	 	var canvas = document.getElementById("canvas");
@@ -77,15 +79,22 @@
 			ctx.stroke();
 			
 			ctx.beginPath();
-			for(var i=0;i<19;i++){
-			    if((i+1)==4 || (i+1)==10 || (i+1)==16){
-				ctx.fillStyle="#000000";
-				ctx.arc(50+(i*40),50+(40*3),4,0,Math.PI*2,false);
-				ctx.arc(50+(i*40),50+(40*9),4,0,Math.PI*2,false);
-				ctx.arc(50+(i*40),50+(40*15),4,0,Math.PI*2,false);
-			    }
-			}
+			
+			ctx.fillStyle="#000000";
+			ctx.arc(50+(3*40),50+(40*3),6,0,Math.PI*2,false);
+			ctx.arc(50+(3*40),50+(40*9),6,0,Math.PI*2,false);
+			ctx.arc(50+(3*40),50+(40*15),6,0,Math.PI*2,false);
+
+			ctx.arc(50+(9*40),50+(40*3),6,0,Math.PI*2,false);
+			ctx.arc(50+(9*40),50+(40*9),6,0,Math.PI*2,false);
+			ctx.arc(50+(9*40),50+(40*15),6,0,Math.PI*2,false);
+
+			ctx.arc(50+(15*40),50+(40*3),6,0,Math.PI*2,false);
+			ctx.arc(50+(15*40),50+(40*9),6,0,Math.PI*2,false);
+			ctx.arc(50+(15*40),50+(40*15),6,0,Math.PI*2,false);
+			   
 			ctx.fill();
+			ctx.closePath();
 		}
 	}
 </script>    
