@@ -1,12 +1,11 @@
 Chess = function(color, x, y){
-	this.color = color;
-	this.x = x;
-	this.y = y;
-	return this;
+	return {color:color,x:x,y:y};
 }
 var Game = {
 	chesses:null,  // 棋子容器
 	canvas:null,  // 画布对象
+	color:1, // 1 黑 2 白
+	deads:null, // 死子检测
 	put:function(color, x, y){ // 下一个棋子
 
 	},

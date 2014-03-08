@@ -13,7 +13,7 @@ Board = function(){
 	// 画棋盘
 	function draw() {
 		var border = 30;
-		cxt.rect(left - border, topx - border, width + 2*border, width + 2*border);
+		cxt.rect(left - border, topx - border, width + 2*border + 100, width + 2*border);
 		cxt.fillStyle = "#D8762F";
 		cxt.fill();
 
@@ -39,7 +39,8 @@ Board = function(){
 		// 星位点
 		for(var i=3;i<17;i+=6) {
 			for(j=3;j<17;j+=6){
-				cxt.arc(grid*i+left, j*grid+topx, 10, 0, Math.PI*2,true);
+				cxt.fillStyle = "black";
+				cxt.arc(grid*i+left, j*grid+topx, 5, 0, Math.PI*2,true);
 				cxt.fill();
 				cxt.closePath();
 			}
