@@ -4,55 +4,233 @@
 	<title>test</title>
 </head>
 <body>
+<div style="position:absolute;margin-left:600px;"><input style="cursor:pointer;" type="button" onclick="callback()" value="back"/></div>
+<div style="position:absolute;margin-left:600px;margin-top:30px;"><input style="cursor:pointer;" type="button" value="go"/></div>
 <canvas  id="mycanvas"  width="580" height="1000">
 </canvas>
+<div onclick="clicktoon()" style="cursor:pointer;color:red;top:3px;left:3px;position:absolute;width:590px;height:590px;">
+	
+</div>
 
 <script type="text/javascript">
 	var c=document.getElementById("mycanvas");
 	var p100=c.getContext("2d");
-	for(var i=30;i<=570;i+=30){
-		p100.moveTo(30,i); 
-		p100.lineTo(570,i);
+	var drow = function(){
+		p100.fillStyle="black";
+		for(var i=30;i<=570;i+=30){
+			p100.moveTo(30,i); 
+			p100.lineTo(570,i);
+		}
+		
+		for(var i=30;i<=570;i+=30){
+			p100.moveTo(i,30); 
+			p100.lineTo(i,570);
+		}
+		for(var i=1;i<=19;i++){
+			p100.fillText(i,(26 + (i-1)*30),26);
+		}
+		
+		p100.fillText("A",15,35);
+		p100.fillText("B",15,65);
+		p100.fillText("C",15,95);
+		p100.fillText("D",15,125);
+		p100.fillText("E",15,155);
+		p100.fillText("F",15,185);
+		p100.fillText("G",15,215);
+		p100.fillText("H",15,245);
+		p100.fillText("I",15,275);
+		p100.fillText("J",15,305);
+		p100.fillText("K",15,335);
+		p100.fillText("L",15,365);
+		p100.fillText("M",15,395);
+		p100.fillText("N",15,425);
+		p100.fillText("O",15,455);
+		p100.fillText("P",15,485);
+		p100.fillText("Q",15,515);
+		p100.fillText("R",15,545);
+		p100.fillText("S",15,575);
+		p100.stroke();	
+	}
+	drow();
+	
+	var array = new Array();
+	var step = 0;
+	for(var i=0;i<19;i++){
+		var a = new Array();
+		for(var j=0;j<19;j++){
+			a[j] = 0;
+		}
+		array[i] = a;
+	}
+	function getMousePos(event) {
+	    var e = event || window.event;
+	    return {'x':e.clientX,'y':e.clientY}
+	}
+	var back = new Array();
+	var b = 0;
+	clicktoon = function(){
+		var zuobiao = getMousePos();
+		var x = parseInt(zuobiao.x/30)-1;
+		var y = parseInt(zuobiao.y/30)-1;
+		if(x < 0 || y < 0 || x>=19||y>=19)return false;
+		if(array[x][y] > 0)return false;
+		put(x,y);
+		var find = kill(array,true,(step-1)%2);
+		if(find)
+			if(find){
+				p100.fill();
+				p100.stroke();	
+				p100.clearRect(0,0,600,600);
+				p100.closePath();
+				p100.beginPath(); 
+				drow();
+				for(var i=0;i<19;i++){
+					for(var j=0;j<19;j++){
+						if(array[i][j]>0){
+							if(array[i][j] > 0){
+								if(array[i][j] == 2){
+									p100.fillStyle="blue";
+									array[i][j] = 2;
+								}else{
+									p100.fillStyle="black";
+									array[i][j] = 1;
+								}
+								p100.beginPath();
+								p100.arc((i+1)*30,(j+1)*30,10,0,Math.PI*2,true);
+								p100.closePath(); //结束画布，防止冲突重叠
+								p100.fill();
+							}
+						}
+					}
+				}
+			}
+	}
+	var put = function(x,y){
+		clone(b,false);
+		b++;
+		if(step%2 == 0){
+			p100.fillStyle="blue";
+			array[x][y] = 2;
+		}else{
+			p100.fillStyle="black";
+			array[x][y] = 1;
+		}
+		step ++;
+		p100.beginPath();
+		p100.arc((x+1)*30,(y+1)*30,10,0,Math.PI*2,true);
+		p100.closePath(); //结束画布，防止冲突重叠
+		p100.fill();
+	}
+	callback = function(){
+		if(b <= 0)return;
+		p100.fill();
+		p100.stroke();	
+		p100.clearRect(0,0,600,600);
+		p100.closePath();
+		p100.beginPath(); 
+		drow();
+		clone(b-1,true);
+		b --;
+		for(var i=0;i<19;i++){
+			for(var j=0;j<19;j++){
+				if(array[i][j]>0){
+					if(array[i][j] > 0){
+						if(array[i][j] == 2){
+							p100.fillStyle="blue";
+							array[i][j] = 2;
+						}else{
+							p100.fillStyle="black";
+							array[i][j] = 1;
+						}
+						step ++;
+						p100.beginPath();
+						p100.arc((i+1)*30,(j+1)*30,10,0,Math.PI*2,true);
+						p100.closePath(); //结束画布，防止冲突重叠
+						p100.fill();
+					}
+				}
+			}
+		}
+		clone(b,false);
+	}
+	var clone = function(n,ba){
+		if(ba){
+			for(var i=0;i<19;i++){
+				for(var j=0;j<19;j++){
+					array[i][j] = back[n][i][j]
+				}
+			}
+		}else{
+			var bb = new Array();
+			for(var i=0;i<19;i++){
+				bb[i] = new Array();
+				for(var j=0;j<19;j++){
+					bb[i][j] = array[i][j]
+				}
+			}
+			back[n] = bb;
+		}
 	}
 	
-	for(var i=30;i<=570;i+=30){
-		p100.moveTo(i,30); 
-		p100.lineTo(i,570);
+	var kill = function(array,on,step){
+		var qi = new Array();
+		for(var i=0;i<19;i++){
+			qi[i] = new Array();
+			for(var j=0;j<19;j++){
+				qi[i][j] = 0;
+				if(array[i][j] > 0){
+					if(((i+1)>=19 || array[i+1][j] > 0) && ((i-1)<0 || array[i-1][j] > 0) && ((j+1)>=19 || array[i][j+1] > 0) && ((j-1)<0 || array[i][j-1] > 0)){
+						qi[i][j] = array[i][j];
+					}
+				}
+			}
+		}
+		var huo = true;
+		while(huo){
+			huo = false;
+			for(var i=0;i<19;i++){
+				for(var j=0;j<19;j++){
+					if(qi[i][j] > 0){
+						if(((i+1)<19 && qi[i+1][j] <= 0 && array[i+1][j] == qi[i][j])||
+								((i-1)>=0 && qi[i-1][j] <= 0 && array[i-1][j] == qi[i][j])||
+								((j+1)<19 && qi[i][j+1] <= 0 && array[i][j+1] == qi[i][j])||
+								((j-1)>=0 && qi[i][j-1] <= 0 && array[i][j-1] == qi[i][j])){
+							huo = true;
+							qi[i][j] = 0;
+						}
+					}
+				}
+			}
+		}
+		if(on){
+			kill(qi,false,step);
+			var find = false;
+			for(var i=0;i<19;i++){
+				for(var j=0;j<19;j++){
+					if(qi[i][j] > 0){
+						array[i][j] = 0;
+						find = true;
+					}
+				}
+			}
+			return find;
+		}else{
+			for(var i=0;i<19;i++){
+				for(var j=0;j<19;j++){
+					if(step == 0){
+						if(qi[i][j] == 2){
+							array[i][j] = 0;
+						}
+					}
+					if(step == 1){
+						if(qi[i][j] == 1){
+							array[i][j] = 0;
+						}
+					} 
+				}
+			}
+		}
 	}
-	p100.stroke();
-	p100.fillStyle="black"; //定义演示
-	p100.beginPath(); //从新开始画，防止冲突重叠
-	for(var i = 120;i<=480;i+=180){
-		p100.arc(i,120,5,0,Math.PI*2,true); //x坐标，y坐标，直径，始，终，时针
-		p100.arc(i,300,5,0,Math.PI*2,true);
-		p100.arc(i,480,5,0,Math.PI*2,true);
-	}
-	p100.closePath(); //结束画布，防止冲突重叠
-	p100.fill(); //结束渲染
-	for(var i=1;i<=19;i++){
-		p100.fillText(i,(26 + (i-1)*30),26);
-	}
-	
-	p100.fillText("A",15,35);
-	p100.fillText("B",15,65);
-	p100.fillText("C",15,95);
-	p100.fillText("D",15,125);
-	p100.fillText("E",15,155);
-	p100.fillText("F",15,185);
-	p100.fillText("G",15,215);
-	p100.fillText("H",15,245);
-	p100.fillText("I",15,275);
-	p100.fillText("J",15,305);
-	p100.fillText("K",15,335);
-	p100.fillText("L",15,365);
-	p100.fillText("M",15,395);
-	p100.fillText("N",15,425);
-	p100.fillText("O",15,455);
-	p100.fillText("P",15,485);
-	p100.fillText("Q",15,515);
-	p100.fillText("R",15,545);
-	p100.fillText("S",15,575);
-	
 </script>
 </body>
 </html>
