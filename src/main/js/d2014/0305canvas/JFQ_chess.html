@@ -3,74 +3,329 @@
 <head>
     <title></title>
 	</head>
-	<body>
-	    <canvas id="chess" width="1300" height="800"></canvas>
+	<body style="background-clor:#153fff;width:100%;height:100%;">
+	    <canvas id="chess" width="1300" height="800"  onclick="drawing(event)"></canvas>
 
-		    <script type="text/javascript">
-			        var grid = 30;
-					var h = 50;
-					var dig = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
-					var w = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S'];
-					var x = [];
-					var y = [];
-					function draw() {
-						var c = document.getElementById("chess");
-						var cxt = c.getContext('2d');
-						cxt.font = "bold 13px Arial";
+    <script type="text/javascript">
+        var grid = 30;
+        var h = 50;
+        var dig = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
+        var w = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S'];
+        var x = [];
+        var y = [];
+        var blackGridPoints = [];   //各坐标
+        var whiteGridPoints = [];
+        var gridPoints = [];
+        var cxt = null;
+        var isBlack = true;
+        var existsPoints = [];   //已经存在的坐标
+        var r = 15;
+        //棋子的四个边缘点
+        var topY = h;
+        var bottomY = h*11 - 10;
+        var leftX = 200;
+        var rightX = 19*grid - 19 - 10;
+        function draw() {
+            var c = document.getElementById("chess");
+            cxt = c.getContext('2d');
+            cxt.font = "bold 13px Arial";
+            cxt.fillStyle = 'rgb(100,23,10)';
+            cxt.fillRect(200,h,19*grid - 19 - 10,h*11 - 10);
+            for (var i = 0; i < 19; i++) {
+                cxt.fillText(dig[i],200+i*grid - 3,h - 10);
+                var gp = new Point();
+                gp.y = h;
+                gp.x = 200+i*grid;
 
-						for (var i = 0; i < 19; i++) {
-							cxt.fillText(dig[i],200+i*grid - 3,h - 10);
-						}
-						for (var i = 0; i < 19; i++) {
-							cxt.fillText(w[i],200 - 20,grid*i + h + 5);
-						}
-						cxt.beginPath();
-						cxt.moveTo(200,h);
-						cxt.lineTo(grid*18 + 200,h);
-						for(var i = 1; i < 19; i++) {
-							cxt.moveTo(200,i*grid + h);
-							cxt.lineTo(grid*18 + 200,i*grid + h);
-							if (i == 3 || i == 9 || i == 15) {
-								var p = new Point();
-								p.x = grid*i+200;
-								p.y = i*grid+h;
-								y.push(p);
-							}
-						}
-						for(var i = 1; i < 20; i++) {
-							cxt.moveTo(200 + (i - 1)*grid,h);
-							cxt.lineTo(200 + (i - 1)*grid, grid*18 + h);
-							if (i == 4 || i == 10 || i == 16) {
-								var p = new Point();
-								p.x = 200 + (i - 1)*grid;
-								p.y = grid*i + h;
+                gridPoints.push(gp);
+            }
+            for (var i = 0; i < 19; i++) {
+                cxt.fillText(w[i],200 - 20,grid*i + h + 5);
+            }
+            cxt.beginPath();
+            cxt.moveTo(200,h);
+            cxt.lineTo(grid*18 + 200,h);
 
-								x.push(p);
-							}
-						}
-						cxt.closePath();
-						cxt.stroke();
+            for(var i = 1; i < 19; i++) {
+                cxt.moveTo(200,i*grid + h);
+                cxt.lineTo(grid*18 + 200,i*grid + h);
+                if (i == 3 || i == 9 || i == 15) {
+                    var p = new Point();
+                    p.x = grid*i+200;
+                    p.y = i*grid+h;
+                    y.push(p);
+                }
+            }
+            for(var i = 1; i < 20; i++) {
+                cxt.moveTo(200 + (i - 1)*grid,h);
+                cxt.lineTo(200 + (i - 1)*grid, grid*18 + h);
+                if (i == 4 || i == 10 || i == 16) {
+                    var p = new Point();
+                    p.x = 200 + (i - 1)*grid;
+                    p.y = grid*i + h;
 
-						for(var i = 0; i < x.length; i++) {
-							cxt.beginPath();
-							var px = x[i];
-							for(var j = 0; j < y.length; j++) {
-								var py = y[j];
-								cxt.arc(px.x,py.y,10,0,Math.PI*2,true);
-							}
-							cxt.fill();
-							cxt.closePath();
+                    x.push(p);
+                }
 
-						}
+            }
 
-					}
+            for(var i = 0; i < 19; i++) {
 
-function Point() {
-	this.x = x;
-	this.y = y;
-}
-draw();
+                for(var j = 0; j < 19; j++) {
+                    var gp = new Point();
+                    gp.y = grid*(i + 1) + h;
+                    gp.x = j*grid + 200;
+                    gridPoints.push(gp);
+                }
+            }
 
+            cxt.closePath();
+            cxt.stroke();
+            cxt.fillStyle='rgba(255,0,0,0.25)';
+            for(var i = 0; i < x.length; i++) {
+                cxt.beginPath();
+                var px = x[i];
+                for(var j = 0; j < y.length; j++) {
+                    var py = y[j];
+                    cxt.arc(px.x,py.y,10,0,Math.PI*2,true);
+                }
+                cxt.fill();
+                cxt.closePath();
+
+            }
+
+        }
+
+        function Point() {
+            this.x = x;
+            this.y = y;
+        }
+        draw();
+        function drawing(event) {
+            var x = event.x;
+            var y = event.y;
+            var isExists = false;
+
+            for(var i = 0; i < existsPoints.length; i++) {
+                var p = existsPoints[i];
+
+                if ((p.x >= x) && (p.x <= (x + r)) && ((x + r) <= (p.x + r))) {
+                    if((p.y >= y && (y + r) >= p.y) || ((p.y + r) >= y && (y - r) >= (p.y - r))) {
+                        isExists = true;
+                    }
+                } else if(p.x >= (x-r) && (x - r) >= (p.x -r)) {
+                    if((p.y >= y && (p.y - r) <= y) || ((p.y + r) >= y && (y - r) >= (p.y - r))) {
+                        isExists = true;
+                    }
+                }
+            }
+            if(isExists) {
+                alert("brother,the sit is full!");
+                return;
+            }
+            if(!isBlack) {
+                cxt.fillStyle='rgb(255,255,255)';
+            } else {
+                cxt.fillStyle='rgb(0,0,0)';
+            }
+            var flag = false;
+            for (var i = 0; i < gridPoints.length; i++) {
+                var py = gridPoints[i];
+                var px = gridPoints[i];
+                if ((px.x >= x) && (px.x <= (x + r)) && ((x + r) <= (px.x + r))) {
+
+                    if(py.y >= y && (py.y - r) <= y) {
+                        cxt.beginPath();
+                        cxt.arc(px.x - 30, py.y - 30,r,0,Math.PI*2,true);
+                        cxt.fill();
+                        cxt.closePath();
+
+                        var p = new Point();
+                        p.x = px.x - 30;
+                        p.y = py.y - 30;
+                        if(isBlack) {
+                            isBlack = false;
+                            blackGridPoints.push(p);
+                        } else {
+                            isBlack = true;
+                            whiteGridPoints.push(p);
+                        }
+                        flag = true;
+                        existsPoints.push(p);
+                        break;
+                    } else if((py.y + r) >= y && (y - r) >= (py.y - r)) {
+                        cxt.beginPath();
+                        cxt.arc(px.x - 30, py.y,5,0,Math.PI*2,true);
+                        cxt.fill();
+                        cxt.closePath();
+                        flag = true;
+                        var p = new Point();
+                        p.x = px.x - 30;
+                        p.y = py.y;
+                        if(isBlack) {
+                            isBlack = false;
+                            blackGridPoints.push(p);
+                        } else {
+                            isBlack = true;
+                            whiteGridPoints.push(p);
+                        }
+
+                        existsPoints.push(p);
+                        break;
+                    }
+                } else if(px.x >= (x-r) && (x - r) >= (px.x -r)) {
+                    if(py.y >= y && (py.y - r) <= y) {
+                        cxt.beginPath();
+                        cxt.arc(px.x, py.y - 30,5,0,Math.PI*2,true);
+                        cxt.fill();
+                        cxt.closePath();
+                        var p = new Point();
+                        p.x = px.x;
+                        p.y = py.y - 30;
+                        if(isBlack) {
+                            isBlack = false;
+                            blackGridPoints.push(p);
+                        } else {
+                            isBlack = true;
+                            whiteGridPoints.push(p);
+                        }
+                        flag = true;
+                        existsPoints.push(p);
+                        break;
+                    } else if((py.y + r) >= y && (y - r) >= (py.y - r)) {
+                        cxt.beginPath();
+                        cxt.arc(px.x, py.y,5,0,Math.PI*2,true);
+                        cxt.fill();
+                        cxt.closePath();
+                        var p = new Point();
+                        p.x = px.x;
+                        p.y = py.y;
+                        if(isBlack) {
+                            isBlack = false;
+                            blackGridPoints.push(p);
+                        } else {
+                            isBlack = true;
+                            whiteGridPoints.push(p);
+                        }
+                        flag = true;
+                        existsPoints.push(p);
+                        break;
+                    }
+                }
+
+            }
+            if(flag) {
+                hasAir(!isBlack);
+            }
+
+        }
+
+    //判断是否断气
+    function hasAir(isBlack) {
+        var clearFlag = false;
+        if(isBlack) {  //如果是黑棋下子
+            if(whiteGridPoints.length > 0) {
+                for(var i = 0; i < whiteGridPoints.length; i++) {
+                    var wp = whiteGridPoints[i];
+                    var lxFlag = false;
+                    var rxFlag = false;
+                    var tyFlag = false;
+                    var byFlag = false;
+                    for(var j = 0; j < blackGridPoints.length;j++) {
+                        var bp = blackGridPoints[j];
+
+                        if(wp.y == bp.y) {
+                            if(wp.x == leftX || (wp.x - grid) == bp.x) {
+                                lxFlag = true;
+                            } else if((wp.x + grid) == rightX || (wp.x + grid) == bp.x){
+                                rxFlag = true;
+                            }
+                        }
+                        if(wp.x == bp.x) {
+                            if(wp.y == topY || (wp.y - grid) == bp.y) {
+                                tyFlag = true;
+                            } else if((wp.y + grid) == bottomY ||(wp.y + grid) == bp.y){
+                                byFlag = true;
+                            }
+                        }
+
+                    }
+                    if(lxFlag && rxFlag && tyFlag && byFlag) {
+                        clearFlag = true;
+                        whiteGridPoints.splice(i,1);
+                        for(var k = 0; k < existsPoints.length; k++) {
+                            var ep = existsPoints[k];
+                            if(ep.x == wp.x && ep.y == wp.y) {
+                                existsPoints.splice(k,1);
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            if(blackGridPoints.length > 0) {
+                for(var i = 0; i < blackGridPoints.length; i++) {
+                    var wp = blackGridPoints[i];
+                    var lxFlag = false;
+                    var rxFlag = false;
+                    var tyFlag = false;
+                    var byFlag = false;
+                    for(var j = 0; j < whiteGridPoints.length;j++) {
+                        var bp = whiteGridPoints[j];
+
+                        if(wp.y == bp.y) {
+                            if((wp.x - grid) == bp.x) {
+                                lxFlag = true;
+                            } else if((wp.x + grid) == bp.x){
+                                rxFlag = true;
+                            }
+                        }
+                        if(wp.x == bp.x) {
+                            if(wp.y == topY || (wp.y - grid) == bp.y) {
+                                tyFlag = true;
+                            } else if((wp.y + grid) == bottomY || (wp.y + grid) == bp.y){
+                                byFlag = true;
+                            }
+                        }
+                    }
+                    if(lxFlag && rxFlag && tyFlag && byFlag) {
+                        clearFlag = true;
+                        blackGridPoints.splice(i,1);
+                        for(var k = 0; k < existsPoints.length; k++) {
+                            var ep = existsPoints[k];
+                            if(ep.x == wp.x && ep.y == wp.y) {
+                                existsPoints.splice(k,1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if(clearFlag) {
+           draw();
+           reDraw();
+        }
+
+    }
+
+    function reDraw() {
+        cxt.fillStyle='rgb(255,255,255)';
+        for(var i = 0; i < whiteGridPoints.length; i++) {
+            var wp = whiteGridPoints[i];
+            cxt.beginPath();
+            cxt.arc(wp.x, wp.y,5,0,Math.PI*2,true);
+            cxt.fill();
+            cxt.closePath();
+        }
+        cxt.fillStyle='rgb(0,0,0)';
+        for(var i = 0; i < blackGridPoints.length; i++) {
+            var wp = blackGridPoints[i];
+            cxt.beginPath();
+            cxt.arc(wp.x, wp.y,5,0,Math.PI*2,true);
+            cxt.fill();
+            cxt.closePath();
+        }
+    }
 </script>
 </body>
 </html>
