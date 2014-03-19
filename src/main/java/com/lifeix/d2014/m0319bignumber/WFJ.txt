@@ -1,0 +1,80 @@
+function strConvertArray(str){
+	var arr = [];
+	for(var i = 0; i < str.length; i++){
+		arr.push(str.charAt(i));
+	}
+	return arr;
+}
+function arrConvertNum(arr){
+	var num = 0;
+	for(var j = arr.length - 1,i = 0; j >= 0; j--,i++){
+		num += arr[j] * Math.pow(10,i);
+	}
+	return num;
+}
+function Multiply(a,b){
+	var arrA = strConvertArray(a);
+	var arrB = strConvertArray(b);
+	//arrB * arrA中的每一位
+	var result = 0,single = 0,decade = 0;
+	var arrTemp = [];
+	var arrC = [];
+	var offset = 0;
+	for(var j = arrA.length - 1; j >= 0; j--){
+		arrTemp = [];
+		result = 0,single = 0,decade = 0;
+		for(var i = arrB.length - 1; i >= 0; i--){
+			result = arrB[i] * arrA[j] + decade;
+			//console.log(arrB + "* " + arrA+"中的最后一位result="+result);
+			single = result % 10;
+			decade = parseInt(result / 10);
+			arrTemp.push(single );
+		}
+		arrTemp.push(decade);
+		console.log(arrB + "乘以" + arrA+"中的第" + parseInt(j+1) + "位="+arrTemp);
+		if(arrC.length == 0){
+			arrC = arrTemp;
+		}
+		else{
+			offset++;
+			arrC = addOffset(arrC,arrTemp,offset);
+			
+		}
+		console.log("此轮相加结果为="+arrC);
+	}
+	//结果逆序
+	arrC = reverse(arrC);
+	console.log("逆序后结果为="+arrC);
+	result = arrConvertNum(arrC);
+	console.log("数值为="+result);
+	
+}
+
+function addOffset(a,b,offset){
+	var arrResult = [],n = 0,result = 0,single = 0,decade = 0;
+	
+	for(var i = 0; i < offset; i++){
+		b.splice(0,0,0);
+	}
+	for(var m = 0; m < b.length; m++){
+		var aVal = a[m]?a[m]:0;
+		result = b[m] + aVal + decade;
+		single = result % 10;
+		decade = parseInt(result / 10);
+		arrResult.push(single);
+	}
+	if(decade!=0){
+		arrResult.push(decade);
+	}
+	return arrResult;
+}
+
+function reverse(a){
+	var arr = [];
+	for(var m = a.length - 1; m >= 0; m--){
+		arr.push(a[m]);
+	}
+	return arr;
+}
+//addOffset([3,0,1,5],[6,3,5,4],1);
+Multiply("7899","5678")
