@@ -1,0 +1,22 @@
+ {
+     "manifest_version": 2,
+     "name": "catch-box",
+     "version": "2.0",
+     "description": "lifeix auto catchbox",
+     "content_scripts": [{
+         "matches": ["file:///www.l99.com/*","http://*/*","https://*/*"],       
+         "js": [ "content.js" ],          
+         "run_at": "document_start",               
+         "all_frames": true                  
+     }],
+	 "background": "background.html",
+	 "permissions": [   
+		"tabs", "http://*/*","https://*/*"  
+	 ]  ,
+	 "browser_action": {  
+		"default_icon": "icon.png" ,
+		"default_title": "catch-box",
+		"default_popup": "popup.html"
+	  }  	 
+
+ }
